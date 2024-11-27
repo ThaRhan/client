@@ -29,7 +29,7 @@ function RankPage() {
     setAiResponse("Loading..."); // Indicate loading
   
     try {
-      const response = await axios.post("http://localhost:3001/api/ai", { prompt: userPrompt });
+      const response = await axios.post("https://client-2-piia.onrender.com", { prompt: userPrompt });
       setAiResponse(response.data.response);
     } catch (error) {
       console.error("Full error:", error.response ? error.response.data : error); // More detailed logging
