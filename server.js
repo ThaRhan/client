@@ -48,7 +48,7 @@ const summonerData = [
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // Make sure this matches your React app's port
+  origin: '*', // Make sure this matches your React app's port
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
