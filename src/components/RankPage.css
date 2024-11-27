@@ -1,0 +1,147 @@
+/* RankPage.css */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark gradient background */
+  color: #fff;
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  position: relative; /* Necessary for absolute-positioned animations */
+}
+
+.rank-page {
+  width: 80%;
+  max-width: 900px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10; /* Ensure it appears above the background animations */
+}
+
+.content {
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 10px;
+}
+
+.rank-info {
+  margin-top: 30px;
+}
+
+.rank-entry {
+  background: rgba(0, 0, 0, 0.7);
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.rank-entry h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.rank-entry p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.rank-entry strong {
+  font-weight: bold;
+}
+
+
+ /*Annimation CSS*/
+.animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  top: -20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+.rank-entry a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.rank-entry a:hover {
+  color: #4287f5;
+  text-decoration: underline;
+}
+
+.prompt-section {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.prompt-section input {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.prompt-section button {
+  padding: 10px 20px;
+  background-color: #4287f5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px
+}
+
+.ai-response {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  width: 90%;
+  margin: 20px auto;
+  font-size: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: pre-wrap; /* Preserve line breaks */
+}
+
+.prompt-section h2{
+  font-size: 24px;
+}
