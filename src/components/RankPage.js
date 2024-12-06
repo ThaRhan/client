@@ -29,7 +29,7 @@ function RankPage() {
     setAiResponse("Loading..."); // Indicate loading
   
     try {
-      const response = await axios.post(`http://localhost:5000/api/ai`, { prompt: userPrompt });
+      const response = await axios.post(`https://backend-1a9z.onrender.com/api/ai`, { prompt: userPrompt });
       setAiResponse(response.data.response);
     } catch (error) {
       console.error("Full error:", error.response ? error.response.data : error); // More detailed logging
@@ -109,7 +109,7 @@ function RankPage() {
   useEffect(() => {
     const fetchRankData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/rank`);
+        const response = await axios.get(`https://backend-1a9z.onrender.com/api/rank`);
         console.log("Received Rank Data:", response.data);
         setRankData(response.data);
       } catch (err) {
