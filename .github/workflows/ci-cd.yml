@@ -1,11 +1,9 @@
 name: CI/CD Pipeline
-
 on:
   push:
     branches: [ staging ]
   pull_request:
     branches: [ main ]
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -20,13 +18,42 @@ jobs:
     - run: npm run lint
     - run: npm test
     - run: npm run build
+    
+    # Optional: Upload build artifacts
+    - uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: build/
+        retention-days: 5
 
   deploy-staging:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/staging'
     steps:
-    - name: Trigger Render Deployment
+    - uses: actions/checkout@v3
+    - name: Deploy to Render
+      env:
+        RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_STAGING_DEPLOY_HOOK }}
       run: |
-        # Note: Replace with your actual Render deploy hook when ready
-        echo "Staging deployment triggered"
+        if [ -n "$RENDER_DEPLOY_HOOK_URL" ]; then
+          curl -X POST $RENDER_DEPLOY_HOOK_URL
+        else
+          echo "Render deploy hook URL not set. Skipping deployment."
+        fi
+
+  deploy-production:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy to Render Production
+      env:
+        RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_PRODUCTION_DEPLOY_HOOK }}
+      run: |
+        if [ -n "$RENDER_DEPLOY_HOOK_URL" ]; then
+          curl -X POST $RENDER_DEPLOY_HOOK_URL
+        else
+          echo "Render production deploy hook URL not set. Skipping deployment."
+        fi
